@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marine One – Email Template Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            min-height: 100vh;
+        }
+
+        /* ── Header ── */
+        header {
+            background: linear-gradient(135deg, #010b15 0%, #0d1b2a 50%, #0a2540 100%);
+            border-bottom: 1px solid #21262d;
+            padding: 40px 60px 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-logo img {
+            height: 48px;
+            width: auto;
+            display: block;
+        }
+
+        .header-divider {
+            width: 1px;
+            height: 48px;
+            background: linear-gradient(180deg, transparent, #30a3dc, transparent);
+        }
+
+        .header-text h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.3px;
+        }
+
+        .header-text p {
+            font-size: 13px;
+            color: #7d8590;
+            margin-top: 3px;
+            letter-spacing: 0.3px;
+        }
+
+        .header-badge {
+            background: rgba(48, 163, 220, 0.1);
+            border: 1px solid rgba(48, 163, 220, 0.3);
+            color: #30a3dc;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Stats Strip ── */
+        .stats-strip {
+            background: #161b22;
+            border-bottom: 1px solid #21262d;
+            padding: 14px 60px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-num {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #7d8590;
+        }
+
+        .stat-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #3fb950;
+            margin-left: auto;
+            box-shadow: 0 0 6px #3fb950;
+        }
+
+        /* ── Main ── */
+        main {
+            padding: 48px 60px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #7d8590;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #21262d;
+        }
+
+        /* ── Grid ── */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* ── Card ── */
+        .card {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #30a3dc;
+            box-shadow: 0 8px 30px rgba(48, 163, 220, 0.12);
+        }
+
+        .card-preview {
+            width: 100%;
+            height: 180px;
+            background: #0d1117;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-preview iframe {
+            width: 200%;
+            height: 200%;
+            border: none;
+            transform: scale(0.5);
+            transform-origin: top left;
+            pointer-events: none;
+        }
+
+        .card-preview-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, #161b22 100%);
+        }
+
+        .card-body {
+            padding: 18px 20px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #e6edf3;
+        }
+
+        .card-subtitle {
+            font-size: 12px;
+            color: #7d8590;
+            line-height: 1.5;
+            margin-top: -6px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .tag-blue {
+            background: rgba(48, 163, 220, 0.12);
+            color: #30a3dc;
+            border: 1px solid rgba(48, 163, 220, 0.25);
+        }
+
+        .tag-green {
+            background: rgba(63, 185, 80, 0.12);
+            color: #3fb950;
+            border: 1px solid rgba(63, 185, 80, 0.25);
+        }
+
+        .tag-gold {
+            background: rgba(210, 153, 34, 0.12);
+            color: #d29522;
+            border: 1px solid rgba(210, 153, 34, 0.25);
+        }
+
+        .tag-red {
+            background: rgba(248, 81, 73, 0.12);
+            color: #f85149;
+            border: 1px solid rgba(248, 81, 73, 0.25);
+        }
+
+        .tag-purple {
+            background: rgba(130, 80, 255, 0.12);
+            color: #8250df;
+            border: 1px solid rgba(130, 80, 255, 0.25);
+        }
+
+        .card-footer {
+            margin-top: auto;
+        }
+
+        .btn-preview {
+            display: block;
+            width: 100%;
+            background: linear-gradient(90deg, #0d4f7c, #1167a3);
+            border: 1px solid #1a6fad;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 0;
+            border-radius: 6px;
+            transition: background 0.2s;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-preview:hover {
+            background: linear-gradient(90deg, #0f5f96, #1a82c7);
+        }
+
+        /* ── Footer ── */
+        footer {
+            margin: 60px 60px 0;
+            padding: 24px 0;
+            border-top: 1px solid #21262d;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        footer p {
+            font-size: 12px;
+            color: #7d8590;
+        }
+
+        .cert-logos {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cert-logos img {
+            height: 20px;
+            width: auto;
+            opacity: 0.4;
+            filter: grayscale(100%);
+            transition: opacity 0.2s;
+        }
+
+        .cert-logos img:hover {
+            opacity: 0.75;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <div class="header-logo">
+                <img src="https://marinelanka.com/wp-content/uploads/2024/03/logo-new-e1773127253452.webp"
+                    alt="Marine One" />
+            </div>
+            <div class="header-divider"></div>
+            <div class="header-text">
+                <h1>Email Template Gallery</h1>
+                <p>EPDA &amp; Crew Change Communication Templates</p>
+            </div>
+        </div>
+        <span class="header-badge">&#9679; Live Templates</span>
+    </header>
+
+    <!-- Stats Strip -->
+    <div class="stats-strip">
+        <div class="stat">
+            <span class="stat-num">14</span>
+            <span class="stat-label">Templates</span>
+        </div>
+        <div class="stat">
+            <span class="stat-num">5</span>
+            <span class="stat-label">Design Styles</span>
+        </div>
+        <div class="stat">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Inline CSS</span>
+        </div>
+        <div style="margin-left:auto; display:flex; align-items:center; gap:8px;">
+            <span class="stat-dot"></span>
+            <span style="font-size:12px; color:#7d8590;">Marine One Private Limited</span>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <main>
+        <p class="section-title">All Templates</p>
+
+        <div class="grid">
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="Template3.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Template 3</p>
+                        <p class="card-subtitle">Modern dark slate with card-based layout</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-blue">Dark Theme</span>
+                        <span class="tag tag-green">Card Grid</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="Template3.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="template4.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Template 4</p>
+                        <p class="card-subtitle">Cyberpunk / terminal aesthetic with dark navy</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-blue">Cyber Dark</span>
+                        <span class="tag tag-red">Neon Accent</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="template4.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="template5.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Template 5</p>
+                        <p class="card-subtitle">Classic navy &amp; gold — elegant editorial style</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-gold">Navy &amp; Gold</span>
+                        <span class="tag tag-green">Serif Fonts</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="template5.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="template6.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Template 6</p>
+                        <p class="card-subtitle">Light tech-minimal with grid document cards</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-blue">Light Theme</span>
+                        <span class="tag tag-blue">Tech Style</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="template6.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="template7.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Template 7</p>
+                        <p class="card-subtitle">Soft rounded cards — friendly &amp; approachable</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-green">Soft Light</span>
+                        <span class="tag tag-blue">Rounded</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="template7.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="template8.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Template 8</p>
+                        <p class="card-subtitle">Boarding pass / transit manifest style</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-gold">Boarding Pass</span>
+                        <span class="tag tag-blue">Dark BG</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="template8.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="template9.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Template 9</p>
+                        <p class="card-subtitle">Clean Stripe-inspired minimal layout</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-blue">Stripe Style</span>
+                        <span class="tag tag-green">Minimal</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="template9.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="template10.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Template 10</p>
+                        <p class="card-subtitle">Operations portal dashboard aesthetic</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-purple">Dashboard</span>
+                        <span class="tag tag-blue">Two-Column</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="template10.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="template11.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Template 11</p>
+                        <p class="card-subtitle">Gradient hero header with timeline steps</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-blue">Gradient Hero</span>
+                        <span class="tag tag-green">Timeline</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="template11.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="template12.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Template 12</p>
+                        <p class="card-subtitle">Official maritime — IMO/UN color palette</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-blue">Maritime Blue</span>
+                        <span class="tag tag-gold">Formal</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="template12.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="template13.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Template 13</p>
+                        <p class="card-subtitle">Clean white — Gmail/Outlook optimized</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-green">Email Safe</span>
+                        <span class="tag tag-blue">Clean White</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="template13.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="template14.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Template 14</p>
+                        <p class="card-subtitle">Official document / port manifest format</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-gold">Document Style</span>
+                        <span class="tag tag-red">Bold Borders</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="template14.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="signature.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">Signature Template</p>
+                        <p class="card-subtitle">Standalone professional email signature</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-blue">Signature</span>
+                        <span class="tag tag-green">Navy Blue</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="signature.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-preview">
+                    <iframe src="m1_tem2.html" loading="lazy" scrolling="no"></iframe>
+                    <div class="card-preview-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="card-title">M1 Template 2</p>
+                        <p class="card-subtitle">Alternative EPDA email template variation</p>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag tag-purple">Alternative</span>
+                        <span class="tag tag-blue">EPDA</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="m1_tem2.html" target="_blank" class="btn-preview">Preview Template</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Marine One Private Limited &nbsp;&bull;&nbsp; <a href="https://www.marinelanka.com"
+                target="_blank" style="color:#30a3dc; text-decoration:none;">marinelanka.com</a></p>
+        <div class="cert-logos">
+            <img src="https://marinelanka.com/wp-content/uploads/2023/06/dnv-gl-logo-1282EF43F2-seeklogo.com_.png"
+                alt="DNV GL" />
+            <img src="https://marinelanka.com/wp-content/uploads/2023/06/ISO-28000-e1687773111687.png"
+                alt="ISO 28000" />
+            <img src="https://marinelanka.com/wp-content/uploads/2023/06/IMPA.png" alt="IMPA" />
+            <img src="https://marinelanka.com/wp-content/uploads/2023/06/amcham.png" alt="AmCham" />
+        </div>
+    </footer>
+
+</body>
+
+</html>
