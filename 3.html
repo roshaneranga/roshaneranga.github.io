@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transit Procedure - Port of Galle OPL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #cbd5e1;
+            /* Darker screen background to make the A4 page pop */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Strict A4 Standard */
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            background: white;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        /* Native Print CSS - This ensures "Save as PDF" looks perfect */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+
+            body {
+                background-color: white;
+                padding: 0;
+            }
+
+            .a4-page {
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+                page-break-after: avoid;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            /* Force background colors to print */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-slate-800">
+
+    <div class="no-print w-[210mm] flex justify-end mb-6">
+        <button onclick="window.print()"
+            class="bg-[#0b1d3a] hover:bg-blue-900 text-white font-bold py-3 px-8 rounded shadow-lg flex items-center transition-all border border-blue-700">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
+                </path>
+            </svg>
+            Print / Save as PDF
+        </button>
+    </div>
+
+    <div class="a4-page">
+
+        <header
+            class="bg-[#0b1d3a] text-white px-10 py-8 flex justify-between items-center border-b-[6px] border-[#eab308] shrink-0">
+            <div class="bg-white p-2 rounded w-40 flex justify-center items-center shadow-inner">
+                <img src="https://marinelanka.com/wp-content/uploads/2026/03/Solas-Logo.png" alt="SOLAS LANKA Logo"
+                    class="h-12 object-contain">
+            </div>
+            <div class="text-right">
+                <h1 class="text-2xl font-bold tracking-widest uppercase text-white">Solas Lanka</h1>
+                <p class="text-[#eab308] font-semibold text-xs tracking-[0.2em] mt-1">Marine Logistics Division</p>
+            </div>
+        </header>
+
+        <div class="px-10 py-5 flex justify-between items-end border-b border-gray-200 shrink-0">
+            <div>
+                <h2 class="text-xl font-bold text-[#0b1d3a] uppercase tracking-wide">Transit Procedure</h2>
+                <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-widest mt-1">Port of Galle OPL</h3>
+            </div>
+            <div class="bg-gray-100 border border-gray-300 px-3 py-1 rounded">
+                <span class="text-[10px] font-bold text-gray-500 tracking-widest uppercase">Doc Ref:</span>
+                <span class="text-xs font-mono font-bold text-[#0b1d3a] ml-1">SL-GAL-001</span>
+            </div>
+        </div>
+
+        <main class="px-10 py-6 flex-grow flex flex-col gap-6">
+
+            <p class="text-[13px] font-medium text-slate-700 leading-relaxed border-l-4 border-[#eab308] pl-4">
+                This procedure outlines requirements for vessels transferring crew, security personal, and equipment at
+                Galle OPL, Sri Lanka.
+            </p>
+
+            <div class="flex gap-8">
+
+                <div class="w-1/3 flex flex-col gap-4">
+                    <div class="bg-[#f8fafc] border border-slate-200 rounded-lg p-5 shadow-sm">
+                        <div class="flex items-center gap-2 mb-4 pb-2 border-b border-slate-200">
+                            <svg class="w-4 h-4 text-[#eab308]" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <h4 class="font-heading font-bold text-xs uppercase tracking-widest text-[#0b1d3a]">RV Point
+                            </h4>
+                        </div>
+                        <p class="text-[10px] text-slate-500 mb-3 leading-tight">Vessel must arrive at the following RV
+                            point unless otherwise advised:</p>
+
+                        <div class="space-y-2">
+                            <div class="bg-white border border-slate-200 p-2 rounded text-center">
+                                <span
+                                    class="block text-[9px] text-slate-400 uppercase tracking-widest mb-0.5">Latitude</span>
+                                <span class="font-mono font-bold text-sm text-[#0b1d3a]">05° 52' N</span>
+                            </div>
+                            <div class="bg-white border border-slate-200 p-2 rounded text-center">
+                                <span
+                                    class="block text-[9px] text-slate-400 uppercase tracking-widest mb-0.5">Longitude</span>
+                                <span class="font-mono font-bold text-sm text-[#0b1d3a]">80° 13' E</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <h4 class="font-heading font-bold text-xs uppercase tracking-widest text-red-700">Mandatory
+                            </h4>
+                        </div>
+                        <p class="text-[11px] font-semibold text-red-900 leading-snug">Please ensure to wear protection
+                            gear for signing off crew.</p>
+                    </div>
+                </div>
+
+                <div class="w-2/3">
+                    <h4
+                        class="font-heading font-bold text-xs uppercase tracking-widest text-[#0b1d3a] mb-4 pb-2 border-b border-slate-200">
+                        Operating Guidelines</h4>
+
+                    <ul class="space-y-4 text-[12px] text-slate-700">
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded bg-[#0b1d3a] text-white font-bold text-[10px]">01</span>
+                            <p class="mt-0.5 leading-relaxed">Vessel must advise her ETA to designated RV point DAILY
+                                and 12, 6, 4, 2 hours basis prior to reaching the RV point.</p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded bg-[#0b1d3a] text-white font-bold text-[10px]">02</span>
+                            <p class="mt-0.5 leading-relaxed">All equipment, weapons and ammunition must be secured by
+                                the security team prior to transfer.</p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded bg-[#0b1d3a] text-white font-bold text-[10px]">03</span>
+                            <p class="mt-0.5 leading-relaxed">The crew boat will supply the life vests and life vests
+                                must be worn by all personnel at all times during the transfer.</p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded bg-[#0b1d3a] text-white font-bold text-[10px]">04</span>
+                            <p class="mt-0.5 leading-relaxed">Vessel must maintain speed of 2-3 knots while transferring
+                                the crew and luggage.</p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded bg-[#0b1d3a] text-white font-bold text-[10px]">05</span>
+                            <div class="mt-0.5 leading-relaxed">
+                                <p class="mb-2">Following crew boats are deployed and vessel can communicate with boat
+                                    on channel 73 and channel 16:</p>
+                                <div class="flex gap-2">
+                                    <span
+                                        class="bg-gray-200 text-[#0b1d3a] px-2 py-1 text-[10px] font-bold rounded uppercase">Penguin
+                                        24</span>
+                                    <span
+                                        class="bg-gray-200 text-[#0b1d3a] px-2 py-1 text-[10px] font-bold rounded uppercase">Penguin
+                                        Alpha</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="mt-auto pt-4">
+                <h4
+                    class="font-heading font-bold text-xs uppercase tracking-widest text-[#0b1d3a] mb-4 pb-2 border-b border-slate-200">
+                    Deployed Assets Reference</h4>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-white border border-slate-200 p-2 rounded shadow-sm">
+                        <div class="aspect-video w-full overflow-hidden rounded bg-gray-100 mb-2">
+                            <img src="https://marinelanka.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-30-at-16.58.31-1.jpeg"
+                                alt="Penguin 24" class="w-full h-full object-cover">
+                        </div>
+                        <p class="text-center font-bold text-[#0b1d3a] text-[11px] uppercase tracking-wide">Penguin 24
+                        </p>
+                    </div>
+                    <div class="bg-white border border-slate-200 p-2 rounded shadow-sm">
+                        <div class="aspect-video w-full overflow-hidden rounded bg-gray-100 mb-2">
+                            <img src="https://marinelanka.com/wp-content/uploads/2026/03/b2.jpeg" alt="Penguin Alpha"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <p class="text-center font-bold text-[#0b1d3a] text-[11px] uppercase tracking-wide">Penguin
+                            Alpha</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="bg-[#0b1d3a] text-white px-10 py-6 shrink-0 border-t-4 border-[#eab308]">
+            <div class="grid grid-cols-3 gap-6">
+
+                <div>
+                    <h5 class="text-[#eab308] font-heading font-bold text-[10px] uppercase tracking-widest mb-3">Galle
+                        Operations</h5>
+                    <div class="text-[10px] text-gray-300 space-y-1">
+                        <p>No. 35, Gibert Lane</p>
+                        <p>Magalle, 80000</p>
+                        <p>Sri Lanka</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h5 class="text-[#eab308] font-heading font-bold text-[10px] uppercase tracking-widest mb-3">24/7
+                        Contact Lines</h5>
+                    <ul class="text-[10px] text-gray-300 space-y-1 font-mono">
+                        <li>+94 11 2 333246 <span class="text-gray-500 font-sans ml-1">(Office)</span></li>
+                        <li>+94 777 44 3465 <span class="text-gray-500 font-sans ml-1">(Mobile)</span></li>
+                        <li>+94 76 532 4919 <span class="text-gray-500 font-sans ml-1">(Mobile)</span></li>
+                        <li>+94 74 015 4335 <span class="text-gray-500 font-sans ml-1">(Mobile)</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-[#eab308] font-heading font-bold text-[10px] uppercase tracking-widest mb-3">ETA
+                        Update Directory</h5>
+                    <ul class="text-[10px] text-gray-300 space-y-1">
+                        <li><a href="mailto:info@marinelanka.lk"
+                                class="hover:text-white transition-colors">info@marinelanka.lk</a></li>
+                        <li><a href="mailto:operations@marinelanka.lk"
+                                class="hover:text-white transition-colors">operations@marinelanka.lk</a></li>
+                        <li><a href="mailto:anuruddha@marinelanka.lk"
+                                class="hover:text-white transition-colors">anuruddha@marinelanka.lk</a></li>
+                        <li><a href="mailto:muhseen@marinelanka.lk"
+                                class="hover:text-white transition-colors">muhseen@marinelanka.lk</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </footer>
+    </div>
+
+</body>
+
+</html>
