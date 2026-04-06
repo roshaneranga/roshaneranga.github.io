@@ -133,6 +133,10 @@
             border-color: #d97706;
         }
 
+        .category-header.purple {
+            border-color: #9333ea;
+        }
+
         .cat-icon {
             width: 36px;
             height: 36px;
@@ -154,6 +158,10 @@
 
         .cat-icon.amber {
             background: #fef3c7;
+        }
+
+        .cat-icon.purple {
+            background: #f3e8ff;
         }
 
         .cat-title {
@@ -201,6 +209,10 @@
 
         .card.amber:hover {
             border-color: #d97706;
+        }
+
+        .card.purple:hover {
+            border-color: #9333ea;
         }
 
         /* Preview */
@@ -278,6 +290,11 @@
             color: #b45309;
         }
 
+        .tag-purple {
+            background: #f3e8ff;
+            color: #7e22ce;
+        }
+
         .tag-slate {
             background: #f1f5f9;
             color: #475569;
@@ -335,6 +352,16 @@
             background: #b45309;
         }
 
+        .btn-preview.purple {
+            background: #9333ea;
+            color: #fff;
+            border-color: #9333ea;
+        }
+
+        .btn-preview.purple:hover {
+            background: #7e22ce;
+        }
+
         /* ── Footer ── */
         footer {
             margin: 0 48px;
@@ -374,7 +401,6 @@
 
 <body>
 
-    <!-- Header -->
     <header>
         <div class="header-left">
             <div class="header-logo">
@@ -384,26 +410,23 @@
             <div class="header-divider"></div>
             <div class="header-text">
                 <h1>Operational Template Library</h1>
-                <p>Security &bull; Crew Change &bull; Ship Spares</p>
+                <p>Security &bull; Crew Change &bull; Port Clearance &bull; Ship Spares</p>
             </div>
         </div>
         <a href="../index.html" class="back-link">&#8592; Back to Full Gallery</a>
     </header>
 
-    <!-- Stats Strip -->
     <div class="stats-strip">
-        <div class="stat"><span class="stat-num">3</span><span class="stat-label">Categories</span></div>
-        <div class="stat"><span class="stat-num">10</span><span class="stat-label">Templates</span></div>
+        <div class="stat"><span class="stat-num">4</span><span class="stat-label">Categories</span></div>
+        <div class="stat"><span class="stat-num">11</span><span class="stat-label">Templates</span></div>
         <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Inline CSS</span></div>
         <div style="margin-left:auto;">
             <span style="font-size:11px;color:#71717a;">Marine One Private Limited &bull; marinelanka.com</span>
         </div>
     </div>
 
-    <!-- Main -->
     <main>
 
-        <!-- ── SECURITY ── -->
         <div class="category">
             <div class="category-header blue">
                 <div class="cat-icon blue">🛡️</div>
@@ -503,7 +526,6 @@
             </div>
         </div>
 
-        <!-- ── CREW CHANGE ── -->
         <div class="category">
             <div class="category-header green">
                 <div class="cat-icon green">⚓</div>
@@ -584,7 +606,40 @@
             </div>
         </div>
 
-        <!-- ── SPARES ── -->
+        <div class="category">
+            <div class="category-header purple">
+                <div class="cat-icon purple">📜</div>
+                <div>
+                    <p class="cat-title">Port Clearance</p>
+                    <p class="cat-count">1 template &mdash; Port and Customs clearance arrangements</p>
+                </div>
+            </div>
+            <div class="grid">
+
+                <div class="card purple">
+                    <div class="card-preview">
+                        <iframe src="Port_Clearance/master.html" loading="lazy" scrolling="no"></iframe>
+                        <div class="card-preview-overlay"></div>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <p class="card-title">Port Clearance (Master)</p>
+                            <p class="card-subtitle">Pre-arrival documents, customs formalities, and ETA operational requirements.</p>
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag tag-purple">To: Master</span>
+                            <span class="tag tag-blue">Port Formalities</span>
+                            <span class="tag tag-slate">Lasan R.</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="Port_Clearance/master.html" target="_blank" class="btn-preview purple">Preview</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <div class="category">
             <div class="category-header amber">
                 <div class="cat-icon amber">📦</div>
@@ -663,7 +718,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Marine One Private Limited &bull; <a href="https://www.marinelanka.com" target="_blank"
                 style="color:#0284c7;text-decoration:none;">marinelanka.com</a></p>
