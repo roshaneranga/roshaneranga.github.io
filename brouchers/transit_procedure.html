@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transit Procedure - Port of Galle OPL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* STRICT A4 Canvas - Locked height to prevent 2nd page spillover */
+        .a4-container {
+            width: 210mm;
+            height: 297mm;
+            /* Strictly fixed height */
+            overflow: hidden;
+            /* Prevents fractional pixel spillover */
+            background-color: #ffffff;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            margin: 0 auto;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+
+            .a4-container {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-slate-800">
+
+    <!--<div class="no-print w-[210mm] flex justify-end mb-6">
+        <button onclick="generatePDF()"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-6 rounded-lg shadow-sm flex items-center transition-colors duration-200">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                </path>
+            </svg>
+            Export to PDF
+        </button>
+    </div>-->
+
+    <div id="pdf-content" class="a4-container flex flex-col">
+
+        <header
+            class="relative px-10 pt-8 pb-4 border-b border-gray-200 shrink-0 flex flex-col items-center text-center">
+
+            <!--<div class="absolute top-8 right-10">
+                <span
+                    class="text-[10px] font-bold text-slate-500 tracking-widest bg-slate-100 px-2.5 py-1 rounded border border-slate-200">DOC
+                    REF: SL-GAL-001</span>
+            </div>-->
+
+            <img src="https://images.weserv.nl/?url=marinelanka.com/wp-content/uploads/2026/03/Solas-Logo.png"
+                alt="SOLAS LANKA Logo" class="h-14 object-contain mb-4" crossorigin="anonymous">
+
+            <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight uppercase">Transit Procedure</h1>
+            <h2
+                class="text-xs font-bold text-blue-600 uppercase tracking-widest mt-1.5 bg-blue-50 px-3 py-0.5 rounded-full border border-blue-100">
+                Galle OPL</h2>
+        </header>
+
+        <div class="flex-grow px-10 py-5">
+
+            <p class="text-[13px] font-medium text-slate-700 mb-5 leading-relaxed border-l-2 border-blue-500 pl-3">
+                This procedure outlines requirements for vessels transferring crew, security personal, and equipment at
+                Galle OPL, Sri Lanka.
+            </p>
+
+            <div class="mb-5 bg-blue-50/50 border border-blue-100 rounded-xl p-4 flex gap-6 shadow-sm">
+                <div class="w-1/2 flex flex-col justify-center">
+                    <h3 class="text-[11px] font-bold text-blue-800 uppercase tracking-widest mb-2">01. Rendezvous (RV)
+                        Point</h3>
+                    <p class="text-xs text-slate-600 mb-3">Vessel must arrive at the following RV point unless otherwise
+                        advised by the master of the crew boat:</p>
+
+                    <div class="flex space-x-4">
+                        <div class="bg-white px-4 py-2 rounded border border-blue-100 shadow-sm w-1/2">
+                            <span
+                                class="block text-[9px] text-slate-400 uppercase tracking-wider mb-0.5">Latitude</span>
+                            <span class="font-mono font-semibold text-sm text-slate-800">05° 52' N</span>
+                        </div>
+                        <div class="bg-white px-4 py-2 rounded border border-blue-100 shadow-sm w-1/2">
+                            <span
+                                class="block text-[9px] text-slate-400 uppercase tracking-wider mb-0.5">Longitude</span>
+                            <span class="font-mono font-semibold text-sm text-slate-800">80° 13' E</span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-1/2 rounded-lg overflow-hidden border border-blue-200 shadow-sm relative bg-slate-200 min-h-[120px]">
+                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                        src="https://maps.google.com/maps?q=5.866667,80.216667&hl=en&z=9&output=embed"
+                        style="position: absolute; top: 0; left: 0; border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <h3
+                    class="text-[11px] font-bold text-slate-800 uppercase tracking-widest mb-3 border-b border-gray-100 pb-1.5">
+                    02. Standard Operating Guidelines</h3>
+                <div class="space-y-3 text-xs text-slate-700">
+                    <div class="flex items-start">
+                        <div
+                            class="flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center w-5 h-5 rounded-full bg-blue-100 text-blue-700 font-bold text-[10px]">
+                            1</div>
+                        <p>Vessel must advise her ETA to designated RV point DAILY and 12, 6, 4, 2 hours basis prior to
+                            reaching the RV point.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div
+                            class="flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center w-5 h-5 rounded-full bg-blue-100 text-blue-700 font-bold text-[10px]">
+                            2</div>
+                        <p>All equipment, weapons and ammunition must be secured by the security team prior to transfer.
+                        </p>
+                    </div>
+                    <div class="flex items-start">
+                        <div
+                            class="flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center w-5 h-5 rounded-full bg-blue-100 text-blue-700 font-bold text-[10px]">
+                            3</div>
+                        <p>The crew boat will supply the life vests and life vests must be worn by all personnel at all
+                            times during the transfer.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div
+                            class="flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center w-5 h-5 rounded-full bg-blue-100 text-blue-700 font-bold text-[10px]">
+                            4</div>
+                        <p>Vessel must maintain speed of 2-3 knots while transferring the crew and luggage.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div
+                            class="flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center w-5 h-5 rounded-full bg-blue-100 text-blue-700 font-bold text-[10px]">
+                            5</div>
+                        <div>
+                            <p class="mb-1.5">Following crew boats are deployed and vessel can communicate with boat on
+                                channel 73 and channel 16:</p>
+                            <div class="flex space-x-2">
+                                <span
+                                    class="px-2 py-1 bg-slate-100 text-slate-800 rounded font-medium text-[10px]">Penguin
+                                    24</span>
+                                <span
+                                    class="px-2 py-1 bg-slate-100 text-slate-800 rounded font-medium text-[10px]">Penguin
+                                    Alpha</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4 border-l-4 border-red-500 bg-red-50 rounded-r-lg p-3 flex items-center">
+                <svg class="w-5 h-5 text-red-500 mr-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <p class="text-red-800 font-semibold text-xs leading-snug">Mandatory Requirement : Please ensure to wear
+                    protection safety gear and follow our safety guideline for signing off crew.</p>
+            </div>
+
+            <div>
+                <h3
+                    class="text-[11px] font-bold text-slate-800 uppercase tracking-widest mb-3 border-b border-gray-100 pb-1.5">
+                    03. Crew Boats</h3>
+                <div class="grid grid-cols-2 gap-5">
+                    <div class="rounded-lg overflow-hidden border border-gray-200 shadow-sm relative h-32">
+                        <img src="https://images.weserv.nl/?url=marinelanka.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-30-at-16.58.31-1.jpeg"
+                            alt="Penguin 24" class="w-full h-full object-cover" crossorigin="anonymous">
+                        <div
+                            class="absolute bottom-0 inset-x-0 bg-white/90 backdrop-blur-sm border-t border-gray-200 py-1.5 text-center text-[10px] font-bold text-slate-800">
+                            PENGUIN 24</div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden border border-gray-200 shadow-sm relative h-32">
+                        <img src="https://images.weserv.nl/?url=marinelanka.com/wp-content/uploads/2026/03/b2.jpeg"
+                            alt="Penguin Alpha" class="w-full h-full object-cover" crossorigin="anonymous">
+                        <div
+                            class="absolute bottom-0 inset-x-0 bg-white/90 backdrop-blur-sm border-t border-gray-200 py-1.5 text-center text-[10px] font-bold text-slate-800">
+                            PENGUIN ALPHA</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="bg-slate-50 border-t border-gray-200 px-10 pt-4 pb-3 shrink-0 mt-auto flex flex-col">
+            <div class="grid grid-cols-3 gap-6 mb-3">
+                <div class="col-span-1">
+                    <div class="flex items-center text-blue-700 mb-1.5">
+                        <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <h4 class="font-bold text-[10px] uppercase tracking-wider text-slate-800">Galle Operations Base
+                        </h4>
+                    </div>
+                    <div class="pl-5">
+                        <p class="text-[10px] text-slate-500 leading-relaxed">
+                            No. 35, Gibert Lane<br>
+                            Magalle, 80000<br>
+                            Sri Lanka
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-span-1">
+                    <div class="flex items-center text-blue-700 mb-1.5">
+                        <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                            </path>
+                        </svg>
+                        <h4 class="font-bold text-[10px] uppercase tracking-wider text-slate-800">24/7 Contact Lines
+                        </h4>
+                    </div>
+                    <div class="pl-5">
+                        <ul class="text-[10px] text-slate-500 space-y-0.5 font-mono">
+                            <li>+94 11 2 333246 (Office)</li>
+                            <li>+94 777 44 3465 (Mob)</li>
+                            <li>+94 76 532 4919 (Mob)</li>
+                            <li>+94 74 015 4335 (Mob)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-span-1">
+                    <div class="flex items-center text-blue-700 mb-1.5">
+                        <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                        <h4 class="font-bold text-[10px] uppercase tracking-wider text-slate-800">Update ETA Directory
+                        </h4>
+                    </div>
+                    <div class="pl-5">
+                        <ul class="text-[10px] font-medium text-blue-600 space-y-0.5">
+                            <li><a href="mailto:info@marinelanka.lk">info@marinelanka.lk</a></li>
+                            <li><a href="mailto:operations@marinelanka.lk">operations@marinelanka.lk</a></li>
+                            <li><a href="mailto:anuruddha@marinelanka.lk">anuruddha@marinelanka.lk</a></li>
+                            <li><a href="mailto:muhseen@marinelanka.lk">muhseen@marinelanka.lk</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-3 mt-1 text-center">
+                <a href="https://www.marinelanka.com"
+                    class="text-[11px] font-bold text-blue-800 tracking-[0.15em] uppercase hover:underline">www.marinelanka.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function generatePDF() {
+            const element = document.getElementById('pdf-content');
+
+            const opt = {
+                margin: 0,
+                filename: 'SOLAS_Transit_Procedure_Galle.pdf',
+                image: { type: 'jpeg', quality: 1.0 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+
+</html>
