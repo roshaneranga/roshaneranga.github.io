@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation Detail Card</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        .pro-toggle input[type="radio"],
+        .pro-toggle input[type="checkbox"] {
+            accent-color: #2563eb;
+            width: 1.1rem;
+            height: 1.1rem;
+            cursor: pointer;
+            margin-top: 2px;
+        }
+
+        /* Wizard Steps are hidden by default */
+        .wizard-step {
+            display: none;
+        }
+
+        .wizard-step.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 min-h-screen p-4 sm:p-8 text-slate-800 font-sans antialiased flex justify-center">
+
+    <form action="submit.php" method="POST"
+        class="w-full max-w-5xl bg-white rounded-xl shadow-md border border-slate-200 p-6 sm:p-10 my-auto">
+
+        <div class="border-b border-slate-200 pb-5 mb-8 flex justify-between items-end">
+            <div>
+                <p class="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-1">Marine Operations</p>
+                <h1 class="text-2xl sm:text-3xl font-bold text-slate-900">Operation Detail Card</h1>
+            </div>
+            <!-- Dynamic Step Indicator -->
+            <div id="step-indicator"
+                class="text-sm font-bold text-blue-800 bg-blue-100 border border-blue-200 px-4 py-1.5 rounded-full shadow-sm">
+                Step 1
+            </div>
+        </div>
+
+        <!-- ==========================================
+         STEP 1: GENERAL INFO
+         ========================================== -->
+        <div id="section-general" class="wizard-step active animate-fade-in">
+            <h2 class="text-xl font-bold text-slate-900 mb-6">1. General Information</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-8">
+                <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Vessel Name
+                        *</label><input type="text" name="vessel_name"
+                        class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none focus:border-blue-500">
+                </div>
+                <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Inquiry
+                        Number</label><input type="text" name="inquiry_number"
+                        class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none focus:border-blue-500">
+                </div>
+                <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Port</label><input
+                        type="text" name="port"
+                        class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none focus:border-blue-500">
+                </div>
+                <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">ETA</label><input
+                        type="datetime-local" name="eta"
+                        class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none focus:border-blue-500">
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <label class="text-sm font-semibold text-slate-700 block mb-2">Location</label>
+                <div class="flex flex-wrap gap-4">
+                    <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="radio" name="location"
+                            value="OPL"> <span class="text-slate-700">OPL</span></label>
+                    <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="radio" name="location"
+                            value="Anchorage"> <span class="text-slate-700">Anchorage</span></label>
+                    <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="radio" name="location"
+                            value="Berth"> <span class="text-slate-700">Berth</span></label>
+                </div>
+            </div>
+
+            <div class="mb-10">
+                <label class="text-sm font-semibold text-slate-700 block mb-3">Operation Type (Select all that
+                    apply)</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <label class="pro-toggle flex items-start gap-2 cursor-pointer"><input type="checkbox"
+                            name="operation_type[]" value="Crew"> <span
+                            class="text-sm text-slate-700">Crew</span></label>
+                    <label class="pro-toggle flex items-start gap-2 cursor-pointer"><input type="checkbox"
+                            name="operation_type[]" value="Technicians"> <span
+                            class="text-sm text-slate-700">Technicians</span></label>
+                    <label class="pro-toggle flex items-start gap-2 cursor-pointer"><input type="checkbox"
+                            name="operation_type[]" value="Superintendent"> <span
+                            class="text-sm text-slate-700">Superintendent</span></label>
+                    <label class="pro-toggle flex items-start gap-2 cursor-pointer"><input type="checkbox"
+                            name="operation_type[]" value="Security"> <span
+                            class="text-sm text-slate-700">Security</span></label>
+                    <label class="pro-toggle flex items-start gap-2 cursor-pointer"><input type="checkbox"
+                            name="operation_type[]" value="Store"> <span
+                            class="text-sm text-slate-700">Store</span></label>
+                    <label class="pro-toggle flex items-start gap-2 cursor-pointer"><input type="checkbox"
+                            name="operation_type[]" value="Spare"> <span
+                            class="text-sm text-slate-700">Spare</span></label>
+                    <label class="pro-toggle flex items-start gap-2 cursor-pointer"><input type="checkbox"
+                            name="operation_type[]" value="Other"> <span
+                            class="text-sm text-slate-700">Other</span></label>
+                </div>
+            </div>
+
+            <!-- Routing Question (Crucial for the Wizard) -->
+            <div class="bg-blue-50 p-6 rounded-lg border border-blue-100 mb-8">
+                <h2 class="text-lg font-semibold text-blue-900 mb-4">Required Operation Scope</h2>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <label
+                        class="pro-toggle flex-1 flex items-center gap-3 bg-white px-4 py-3 rounded border border-slate-200 cursor-pointer hover:border-blue-400">
+                        <input type="radio" name="crew_operation" value="sign_on"> <span
+                            class="font-medium text-slate-800">Sign On Only</span>
+                    </label>
+                    <label
+                        class="pro-toggle flex-1 flex items-center gap-3 bg-white px-4 py-3 rounded border border-slate-200 cursor-pointer hover:border-blue-400">
+                        <input type="radio" name="crew_operation" value="sign_off"> <span
+                            class="font-medium text-slate-800">Sign Off Only</span>
+                    </label>
+                    <label
+                        class="pro-toggle flex-1 flex items-center gap-3 bg-white px-4 py-3 rounded border border-slate-200 cursor-pointer hover:border-blue-400">
+                        <input type="radio" name="crew_operation" value="both"> <span
+                            class="font-medium text-slate-800">Both Operations</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button type="button" onclick="goNext()"
+                    class="bg-blue-600 text-white font-medium px-8 py-3 rounded-lg shadow hover:bg-blue-700 transition-colors">
+                    Next Step &rarr;
+                </button>
+            </div>
+        </div>
+
+        <!-- ==========================================
+         STEP 2: SIGN ON
+         ========================================== -->
+        <div id="section-sign-on" class="wizard-step animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">Sign On Details</h2>
+
+            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 mb-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Crew & Visa
+                    Information</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Total Number of
+                            Crew</label><input type="number" name="sign_on_crew_count"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="text-sm font-semibold text-slate-700 block mb-2">Visa Type Required</label>
+                        <div class="flex gap-4">
+                            <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    name="visa_type[]" value="Business Visa"> <span class="text-slate-700">Business
+                                    Visa</span></label>
+                            <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    name="visa_type[]" value="Bond Stickers"> <span class="text-slate-700">Bond
+                                    Stickers</span></label>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex flex-col gap-1 w-1/2"><label class="text-sm font-semibold text-slate-700">No.
+                                of Business Visas</label><input type="number" name="business_visa_count"
+                                class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none">
+                        </div>
+                        <div class="flex flex-col gap-1 w-1/2"><label class="text-sm font-semibold text-slate-700">No.
+                                of Bond Stickers</label><input type="number" name="bond_sticker_count"
+                                class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label
+                        class="pro-toggle flex items-center gap-2 cursor-pointer bg-blue-50 p-3 rounded border border-blue-100 w-max">
+                        <input type="checkbox" name="applied_by_marine_one" value="Yes"> <span
+                            class="text-sm font-semibold text-blue-900">Business Visas Applied by Marine One</span>
+                    </label>
+                </div>
+                <div class="flex flex-col gap-1"><label
+                        class="text-sm font-semibold text-slate-700">Remarks</label><input type="text"
+                        name="sign_on_remarks"
+                        class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+            </div>
+
+            <!-- Agent Pickups (Infinite Loop) -->
+            <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Agent Pickups</h3>
+                <div id="agent-pickups-container" class="flex flex-col gap-4 mb-4"></div>
+                <button type="button" onclick="addAgentPickup()"
+                    class="text-sm font-semibold text-blue-600 bg-blue-50 px-4 py-2 rounded-lg border border-blue-100 hover:bg-blue-100 transition-colors">
+                    + Add Agent Pickup
+                </button>
+            </div>
+
+            <!-- Airport Pickup Vehicles (Infinite Loop) -->
+            <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Airport Pickup
+                    Vehicles</h3>
+                <div id="airport-vehicles-container" class="flex flex-col gap-4 mb-4"></div>
+                <button type="button" onclick="addAirportVehicle()"
+                    class="text-sm font-semibold text-blue-600 bg-blue-50 px-4 py-2 rounded-lg border border-blue-100 hover:bg-blue-100 transition-colors">
+                    + Add Pickup Vehicle
+                </button>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 mb-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Hotel Charges</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Hotel
+                            Name</label><input type="text" name="hotel_name"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                    <div class="flex gap-4">
+                        <div class="flex flex-col gap-1 w-1/3"><label class="text-sm font-semibold text-slate-700">SGL
+                                Rooms</label><input type="number" name="hotel_sgl"
+                                class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white"></div>
+                        <div class="flex flex-col gap-1 w-1/3"><label class="text-sm font-semibold text-slate-700">DBL
+                                Rooms</label><input type="number" name="hotel_dbl"
+                                class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white"></div>
+                        <div class="flex flex-col gap-1 w-1/3"><label class="text-sm font-semibold text-slate-700">TPL
+                                Rooms</label><input type="number" name="hotel_tpl"
+                                class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white"></div>
+                    </div>
+                </div>
+                <label class="text-sm font-semibold text-slate-700 block mb-2">Meals & Extras (Quantities)</label>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+                    <div class="flex flex-col gap-1"><label
+                            class="text-xs font-semibold text-slate-500 uppercase">Breakfast</label><input type="number"
+                            name="hotel_breakfast"
+                            class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                    <div class="flex flex-col gap-1"><label
+                            class="text-xs font-semibold text-slate-500 uppercase">Lunch</label><input type="number"
+                            name="hotel_lunch"
+                            class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                    <div class="flex flex-col gap-1"><label
+                            class="text-xs font-semibold text-slate-500 uppercase">Dinner</label><input type="number"
+                            name="hotel_dinner"
+                            class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                    <div class="flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Lobby
+                            Stay</label><input type="number" name="hotel_lobby"
+                            class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                    <div class="flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Add.
+                            Bev.</label><input type="number" name="hotel_beverages"
+                            class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                </div>
+                <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Hotel
+                        Remarks</label><input type="text" name="hotel_remarks"
+                        class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 mb-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Port Transport</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="text-sm font-semibold text-slate-700 block mb-2">Supplier Name</label>
+                        <div class="flex flex-wrap gap-4">
+                            <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    name="port_supplier[]" value="Chaminda"> <span
+                                    class="text-slate-700">Chaminda</span></label>
+                            <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    name="port_supplier[]" value="Tharusha tours"> <span
+                                    class="text-slate-700">Tharusha</span></label>
+                            <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    name="port_supplier[]" value="Other"> <span
+                                    class="text-slate-700">Other</span></label>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Number of
+                            Vehicles</label><input type="number" name="port_vehicles_count"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                </div>
+                <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Port Transport
+                        Remarks</label><input type="text" name="port_remarks"
+                        class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 mb-8">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Additional Port
+                    Payment</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Payment
+                            Amount</label><input type="number" name="additional_port_payment"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"
+                            placeholder="Amount"></div>
+                    <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Remarks /
+                            Reason</label><input type="text" name="additional_port_payment_remarks"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                </div>
+            </div>
+
+            <div class="flex justify-between mt-8 border-t border-slate-200 pt-6">
+                <button type="button" onclick="goPrev()"
+                    class="bg-slate-200 text-slate-700 font-medium px-8 py-3 rounded-lg hover:bg-slate-300">&larr;
+                    Back</button>
+                <button type="button" onclick="goNext()"
+                    class="bg-blue-600 text-white font-medium px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">Next
+                    Step &rarr;</button>
+            </div>
+        </div>
+
+        <!-- ==========================================
+         STEP 3: SIGN OFF
+         ========================================== -->
+        <div id="section-sign-off" class="wizard-step animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">Sign Off Details</h2>
+
+            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 mb-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Crew & Visa
+                    Information</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Total Number of
+                            Crew</label><input type="number" name="sign_off_crew_count"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="text-sm font-semibold text-slate-700 block mb-2">Visa Type</label>
+                        <div class="flex gap-4">
+                            <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    name="sign_off_visa_type[]" value="Business Visa"> <span
+                                    class="text-slate-700">Business Visa</span></label>
+                            <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    name="sign_off_visa_type[]" value="Bond Stickers"> <span class="text-slate-700">Bond
+                                    Stickers</span></label>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex flex-col gap-1 w-1/2"><label class="text-sm font-semibold text-slate-700">No.
+                                of Business Visas</label><input type="number" name="sign_off_business_visa_count"
+                                class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none">
+                        </div>
+                        <div class="flex flex-col gap-1 w-1/2"><label class="text-sm font-semibold text-slate-700">No.
+                                of Bond Stickers</label><input type="number" name="sign_off_bond_sticker_count"
+                                class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label
+                        class="pro-toggle flex items-center gap-2 cursor-pointer bg-blue-50 p-3 rounded border border-blue-100 w-max">
+                        <input type="checkbox" name="sign_off_applied_by_marine_one" value="Yes"> <span
+                            class="text-sm font-semibold text-blue-900">Business Visas Applied by Marine One</span>
+                    </label>
+                </div>
+                <div class="flex flex-col gap-1"><label
+                        class="text-sm font-semibold text-slate-700">Remarks</label><input type="text"
+                        name="sign_off_crew_remarks"
+                        class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 mb-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Additional Port
+                    Payment</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Payment
+                            Amount</label><input type="number" name="sign_off_additional_port_payment"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"
+                            placeholder="Amount"></div>
+                    <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Remarks /
+                            Reason</label><input type="text" name="sign_off_additional_port_payment_remarks"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 mb-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Port Transport</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="text-sm font-semibold text-slate-700 block mb-2">Supplier Name</label>
+                        <div class="flex flex-wrap gap-4">
+                            <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    name="sign_off_port_supplier[]" value="Chaminda"> <span
+                                    class="text-slate-700">Chaminda</span></label>
+                            <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    name="sign_off_port_supplier[]" value="Tharusha tours"> <span
+                                    class="text-slate-700">Tharusha</span></label>
+                            <label class="pro-toggle flex items-center gap-2 cursor-pointer"><input type="checkbox"
+                                    name="sign_off_port_supplier[]" value="Other"> <span
+                                    class="text-slate-700">Other</span></label>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Number of
+                            Vehicles</label><input type="number" name="sign_off_port_vehicles_count"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                </div>
+                <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Port Transport
+                        Remarks</label><input type="text" name="sign_off_port_remarks"
+                        class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200 mb-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Hotel Charges</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Hotel
+                            Name</label><input type="text" name="sign_off_hotel_name"
+                            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                    <div class="flex gap-4">
+                        <div class="flex flex-col gap-1 w-1/3"><label class="text-sm font-semibold text-slate-700">SGL
+                                Rooms</label><input type="number" name="sign_off_hotel_sgl"
+                                class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white"></div>
+                        <div class="flex flex-col gap-1 w-1/3"><label class="text-sm font-semibold text-slate-700">DBL
+                                Rooms</label><input type="number" name="sign_off_hotel_dbl"
+                                class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white"></div>
+                        <div class="flex flex-col gap-1 w-1/3"><label class="text-sm font-semibold text-slate-700">TPL
+                                Rooms</label><input type="number" name="sign_off_hotel_tpl"
+                                class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white"></div>
+                    </div>
+                </div>
+                <label class="text-sm font-semibold text-slate-700 block mb-2">Meals & Extras (Quantities)</label>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+                    <div class="flex flex-col gap-1"><label
+                            class="text-xs font-semibold text-slate-500 uppercase">Breakfast</label><input type="number"
+                            name="sign_off_hotel_breakfast"
+                            class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                    <div class="flex flex-col gap-1"><label
+                            class="text-xs font-semibold text-slate-500 uppercase">Lunch</label><input type="number"
+                            name="sign_off_hotel_lunch"
+                            class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                    <div class="flex flex-col gap-1"><label
+                            class="text-xs font-semibold text-slate-500 uppercase">Dinner</label><input type="number"
+                            name="sign_off_hotel_dinner"
+                            class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                    <div class="flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Lobby
+                            Stay</label><input type="number" name="sign_off_hotel_lobby"
+                            class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                    <div class="flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Add.
+                            Bev.</label><input type="number" name="sign_off_hotel_beverages"
+                            class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white outline-none"></div>
+                </div>
+                <div class="flex flex-col gap-1"><label class="text-sm font-semibold text-slate-700">Hotel
+                        Remarks</label><input type="text" name="sign_off_hotel_remarks"
+                        class="w-full px-4 py-2.5 rounded-lg border border-slate-300 bg-white outline-none"></div>
+            </div>
+
+            <!-- Flight Tickets (Infinite Loop) -->
+            <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Flight Tickets</h3>
+                <div id="flight-tickets-container" class="flex flex-col gap-4 mb-4"></div>
+                <button type="button" onclick="addFlightTicket()"
+                    class="text-sm font-semibold text-blue-600 bg-blue-50 px-4 py-2 rounded-lg border border-blue-100 hover:bg-blue-100">
+                    + Add Flight Ticket
+                </button>
+            </div>
+
+            <!-- Airport Drop Vehicles (Infinite Loop) -->
+            <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Airport Drop
+                    Vehicles</h3>
+                <div id="airport-drops-container" class="flex flex-col gap-4 mb-4"></div>
+                <button type="button" onclick="addAirportDrop()"
+                    class="text-sm font-semibold text-blue-600 bg-blue-50 px-4 py-2 rounded-lg border border-blue-100 hover:bg-blue-100">
+                    + Add Drop Vehicle
+                </button>
+            </div>
+
+            <div class="flex justify-between mt-8 border-t border-slate-200 pt-6">
+                <button type="button" onclick="goPrev()"
+                    class="bg-slate-200 text-slate-700 font-medium px-8 py-3 rounded-lg hover:bg-slate-300">&larr;
+                    Back</button>
+                <button type="button" onclick="goNext()"
+                    class="bg-blue-600 text-white font-medium px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">Next
+                    Step &rarr;</button>
+            </div>
+        </div>
+
+        <!-- ==========================================
+         STEP 4: FINAL STEP (Launch Hire & Submit)
+         ========================================== -->
+        <div id="section-launch-hire" class="wizard-step animate-fade-in">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">Final Details & Launch Hire</h2>
+
+            <!-- Launch Hire (Infinite Loop) -->
+            <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 mb-8 shadow-inner">
+                <h3 class="text-lg font-bold text-blue-900 mb-4 border-b border-blue-200 pb-2">Launch Hire (Required)
+                </h3>
+                <div id="launch-hire-container" class="flex flex-col gap-4 mb-4"></div>
+                <button type="button" onclick="addLaunchHire()"
+                    class="text-sm font-bold text-blue-700 bg-white px-4 py-2 rounded border border-blue-200 hover:bg-blue-100 shadow-sm">
+                    + Add Another Boat
+                </button>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-between mt-8 pt-6 border-t border-slate-200">
+                <button type="button" onclick="goPrev()"
+                    class="bg-slate-200 text-slate-700 font-medium px-8 py-3 rounded-lg hover:bg-slate-300">&larr;
+                    Back</button>
+
+                <div class="flex gap-4">
+                    <button type="submit" name="status" value="draft"
+                        class="bg-white text-blue-700 font-medium px-8 py-3 rounded-lg border-2 border-blue-200 hover:bg-blue-50">
+                        💾 Save Draft
+                    </button>
+                    <button type="submit" name="status" value="pending"
+                        class="bg-emerald-600 text-white font-medium px-8 py-3 rounded-lg shadow hover:bg-emerald-700">
+                        ✅ Submit to Manager
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <script>
+        // ==========================================
+        // WIZARD NAVIGATION LOGIC
+        // ==========================================
+        let flow = [];
+        let currentIndex = 0;
+
+        function buildFlow() {
+            const opType = document.querySelector('input[name="crew_operation"]:checked');
+            flow = ['section-general'];
+
+            if (opType) {
+                if (opType.value === 'sign_on' || opType.value === 'both') flow.push('section-sign-on');
+                if (opType.value === 'sign_off' || opType.value === 'both') flow.push('section-sign-off');
+            }
+
+            flow.push('section-launch-hire');
+        }
+
+        function showStep() {
+            document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
+            document.getElementById(flow[currentIndex]).classList.add('active');
+            document.getElementById('step-indicator').innerText = `Step ${currentIndex + 1} of ${flow.length}`;
+        }
+
+        function goNext() {
+            if (currentIndex === 0) {
+                const opType = document.querySelector('input[name="crew_operation"]:checked');
+                if (!opType) {
+                    alert("Please select an Operation Scope to continue.");
+                    return;
+                }
+                buildFlow();
+            }
+
+            if (currentIndex < flow.length - 1) {
+                currentIndex++;
+                showStep();
+            }
+        }
+
+        function goPrev() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showStep();
+            }
+        }
+
+        // ==========================================
+        // INFINITE LOOPS (Fully Expanded)
+        // ==========================================
+        let agentCount = 0;
+        function addAgentPickup() {
+            agentCount++;
+            const id = `agent-row-${agentCount}`;
+            document.getElementById('agent-pickups-container').insertAdjacentHTML('beforeend', `
+            <div id="${id}" class="flex flex-wrap md:flex-nowrap items-end gap-4 bg-slate-50 p-4 rounded border border-slate-200">
+                <div class="w-full md:w-1/4 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Date</label><input type="date" name="agent_pickup_date[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <div class="w-full md:w-1/4 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Time</label><input type="time" name="agent_pickup_time[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <div class="w-full md:w-1/4 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Cost</label><input type="number" name="agent_pickup_cost[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500" placeholder="Amount"></div>
+                <div class="w-full md:w-1/3 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Remarks</label><input type="text" name="agent_pickup_remarks[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <button type="button" onclick="document.getElementById('${id}').remove()" class="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-2 rounded border border-red-200 transition-colors text-sm font-semibold h-[42px]">Remove</button>
+            </div>
+            `);
+        }
+
+        let vehicleCount = 0;
+        function addAirportVehicle() {
+            vehicleCount++;
+            const id = `vehicle-row-${vehicleCount}`;
+            document.getElementById('airport-vehicles-container').insertAdjacentHTML('beforeend', `
+            <div id="${id}" class="flex flex-wrap md:flex-nowrap items-end gap-4 bg-slate-50 p-4 rounded border border-slate-200">
+                <div class="w-full md:w-1/5 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Date</label><input type="date" name="vehicle_date[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <div class="w-full md:w-1/5 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Time</label><input type="time" name="vehicle_time[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <div class="w-full md:w-1/5 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">No. Vehicles</label><input type="number" name="vehicle_qty[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <div class="w-full md:w-1/5 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Meal Chg</label><input type="number" name="vehicle_meal_charges[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <div class="w-full md:w-1/4 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Remarks</label><input type="text" name="vehicle_remarks[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <button type="button" onclick="document.getElementById('${id}').remove()" class="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-2 rounded border border-red-200 transition-colors text-sm font-semibold h-[42px]">Remove</button>
+            </div>
+            `);
+        }
+
+        let flightCount = 0;
+        function addFlightTicket() {
+            flightCount++;
+            const id = `flight-row-${flightCount}`;
+            document.getElementById('flight-tickets-container').insertAdjacentHTML('beforeend', `
+            <div id="${id}" class="flex flex-wrap md:flex-nowrap items-end gap-4 bg-slate-50 p-4 rounded border border-slate-200">
+                <div class="w-full md:w-1/3 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Date</label><input type="date" name="flight_date[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <div class="w-full md:w-1/3 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">No. of Tickets</label><input type="number" name="flight_qty[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <div class="w-full md:w-1/3 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Quoted Price</label><input type="number" step="0.01" name="flight_price[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500" placeholder="Amount"></div>
+                <button type="button" onclick="document.getElementById('${id}').remove()" class="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-2 rounded border border-red-200 transition-colors text-sm font-semibold h-[42px]">Remove</button>
+            </div>
+            `);
+        }
+
+        let dropCount = 0;
+        function addAirportDrop() {
+            dropCount++;
+            const id = `drop-row-${dropCount}`;
+            document.getElementById('airport-drops-container').insertAdjacentHTML('beforeend', `
+            <div id="${id}" class="flex flex-wrap md:flex-nowrap items-end gap-4 bg-slate-50 p-4 rounded border border-slate-200">
+                <div class="w-full md:w-1/5 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Date</label><input type="date" name="drop_vehicle_date[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <div class="w-full md:w-1/5 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Drop Time</label><input type="time" name="drop_vehicle_time[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <div class="w-full md:w-1/5 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">No. Vehicles</label><input type="number" name="drop_vehicle_qty[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <div class="w-full md:w-1/5 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Meal Chg</label><input type="number" name="drop_vehicle_meal_charges[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <div class="w-full md:w-1/4 flex flex-col gap-1"><label class="text-xs font-semibold text-slate-500 uppercase">Remarks</label><input type="text" name="drop_vehicle_remarks[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <button type="button" onclick="document.getElementById('${id}').remove()" class="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-2 rounded border border-red-200 transition-colors text-sm font-semibold h-[42px]">Remove</button>
+            </div>
+            `);
+        }
+
+        let launchCount = 0;
+        function addLaunchHire() {
+            launchCount++;
+            const id = `launch-row-${launchCount}`;
+            document.getElementById('launch-hire-container').insertAdjacentHTML('beforeend', `
+            <div id="${id}" class="flex flex-wrap md:flex-nowrap items-end gap-4 bg-white p-4 rounded border border-blue-100">
+                <div class="w-full md:w-1/2 flex flex-col gap-1"><label class="text-xs font-semibold text-blue-500 uppercase">Boat Name</label><input type="text" name="launch_boat_name[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500" placeholder="e.g. Express 1"></div>
+                <div class="w-full md:w-1/2 flex flex-col gap-1"><label class="text-xs font-semibold text-blue-500 uppercase">Remarks</label><input type="text" name="launch_boat_remarks[]" class="w-full px-3 py-2 rounded border border-slate-300 outline-none focus:border-blue-500"></div>
+                <button type="button" onclick="document.getElementById('${id}').remove()" class="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-2 rounded border border-red-200 transition-colors text-sm font-semibold h-[42px]">Remove</button>
+            </div>
+            `);
+        }
+
+        // Initialize one row for each loop on startup
+        window.onload = function () {
+            addAgentPickup();
+            addAirportVehicle();
+            addFlightTicket();
+            addAirportDrop();
+            addLaunchHire();
+        };
+    </script>
+</body>
+
+</html>
